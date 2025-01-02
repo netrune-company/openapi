@@ -1,0 +1,14 @@
+use {{ handler_path }};
+
+{{ test }}
+
+pub fn router() -> Router {
+    Router::new()
+        {%- for path, methods in schema.paths %}
+        .route("{{ path }}", {% for method, route in methods -%}
+            {% if loop.index > 1 -%}.{%- endif -%}
+            {{ method }}({{ route.operationId | snake_case }})
+            {%- endfor -%}
+        )
+        {%- endfor %}
+}

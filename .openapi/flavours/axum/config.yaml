@@ -1,0 +1,13 @@
+version: 0.0.1
+language: rust
+inputs:
+  handler_path:
+    required: true
+  test:
+    required: false
+    default: "WOAH"
+templates:
+  - name: Router
+    input: router
+    output_dir: test
+    output: router.rs

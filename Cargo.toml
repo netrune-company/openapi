@@ -1,0 +1,13 @@
+[package]
+name = "oam"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { version = "1.0.95" }
+serde = { version = "1.0.217", features = ["derive"] }
+serde_yaml = { version = "0.9.33" }
+colored = { version = "2.2.0" }
+clap = { version = "4.5.23", features = ["derive"] }
+tera = { version = "1.20.0", features = ["builtins"] }
+convert_case = { version = "0.6.0" }
