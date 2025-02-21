@@ -1,1 +1,1 @@
-// TODO: Implement the OpenAPI Schema.
+pub type OpenApiSchema = openapiv3::OpenAPI;
