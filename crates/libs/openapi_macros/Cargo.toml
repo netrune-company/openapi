@@ -1,0 +1,11 @@
+[package]
+name = "openapi_macros"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+openapi_schema.workspace = true
+handlebars.workspace = true
+
+[lib]
+proc-macro = true
