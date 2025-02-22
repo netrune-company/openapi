@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 openapiv3.workspace = true
+serde_yaml = { version = "0.9.33" }
