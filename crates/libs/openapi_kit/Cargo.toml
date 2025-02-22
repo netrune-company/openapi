@@ -1,0 +1,12 @@
+[package]
+name = "openapi_kit"
+description = "OpenAPI Kit"
+version = "0.0.1"
+edition = "2024"
+homepage = "github.com/netrune/openapi"
+repository = "github.com/netrune/openapi"
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+openapi_macros.workspace = true

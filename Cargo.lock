@@ -224,11 +224,18 @@ version = "0.1.0"
 
 [[package]]
 name = "openapi_generator"
-version = "0.1.0"
+version = "0.0.1"
+
+[[package]]
+name = "openapi_kit"
+version = "0.0.1"
+dependencies = [
+ "openapi_macros",
+]
 
 [[package]]
 name = "openapi_macros"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "handlebars",
  "openapi_schema",
@@ -236,7 +243,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_schema"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "openapiv3",
  "serde_yaml",
