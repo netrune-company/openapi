@@ -1,8 +1,10 @@
 [workspace]
 resolver = "2"
-members = ["crates/apps/*", "crates/libs/*", "examples/*"]
+members = ["crates/apps/*", "crates/libs/*"]
 
 [workspace.dependencies]
 openapi_schema = { path = "crates/libs/openapi_schema" }
+openapi_macros = { path = "crates/libs/openapi_macros" }
 
 openapiv3 = { version = "2.0.0" }
+handlebars = { version = "6.3.1" }
