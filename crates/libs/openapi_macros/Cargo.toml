@@ -1,7 +1,12 @@
 [package]
 name = "openapi_macros"
-version = "0.1.0"
+description = "OpenAPI Macros"
+version = "0.0.1"
 edition = "2024"
+homepage = "github.com/netrune/openapi"
+repository = "github.com/netrune/openapi"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
 openapi_schema.workspace = true
