@@ -26,7 +26,7 @@ pub fn openapi(input: TokenStream) -> TokenStream {
     };
 
     // Load OpenAPI schema
-    let schema = openapi_schema::load("openapi.yaml");
+    let schema = openapi_kit_schema::load("openapi.yaml");
 
     // Render the template
     let hbs = Handlebars::new();
