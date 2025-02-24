@@ -1,6 +1,6 @@
 [package]
-name = "openapi_kit"
-description = "OpenAPI Kit"
+name = "openapi_kit_macros"
+description = "OpenAPI Macros"
 version = "0.0.1"
 edition = "2024"
 homepage = "https://github.com/netrune/openapi"
@@ -9,5 +9,8 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
-openapi_kit_macros.workspace = true
 openapi_kit_schema.workspace = true
+handlebars.workspace = true
+
+[lib]
+proc-macro = true

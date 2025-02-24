@@ -1,6 +1,6 @@
 [package]
-name = "openapi_kit"
-description = "OpenAPI Kit"
+name = "openapi_kit_schema"
+description = "OpenAPI Schema"
 version = "0.0.1"
 edition = "2024"
 homepage = "https://github.com/netrune/openapi"
@@ -9,5 +9,5 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
-openapi_kit_macros.workspace = true
-openapi_kit_schema.workspace = true
+openapiv3.workspace = true
+serde_yaml = { version = "0.9.33" }

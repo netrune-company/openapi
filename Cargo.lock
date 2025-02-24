@@ -223,26 +223,27 @@ name = "openapi_cli"
 version = "0.1.0"
 
 [[package]]
-name = "openapi_generator"
-version = "0.0.1"
-
-[[package]]
 name = "openapi_kit"
 version = "0.0.1"
 dependencies = [
- "openapi_macros",
+ "openapi_kit_macros",
+ "openapi_kit_schema",
 ]
 
 [[package]]
-name = "openapi_macros"
+name = "openapi_kit_generator"
+version = "0.0.1"
+
+[[package]]
+name = "openapi_kit_macros"
 version = "0.0.1"
 dependencies = [
  "handlebars",
- "openapi_schema",
+ "openapi_kit_schema",
 ]
 
 [[package]]
-name = "openapi_schema"
+name = "openapi_kit_schema"
 version = "0.0.1"
 dependencies = [
  "openapiv3",
