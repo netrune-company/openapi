@@ -12,5 +12,7 @@ license = "MIT"
 openapi_kit_schema.workspace = true
 handlebars.workspace = true
 
+syn = { version = "2.0.98" }
+
 [lib]
 proc-macro = true

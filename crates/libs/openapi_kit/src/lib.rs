@@ -1,7 +1,6 @@
-pub use openapi_kit_macros as macros;
 pub use openapi_kit_schema as schema;
 
-pub mod prelude {
-    pub use crate::macros::*;
-    pub use crate::schema::*;
+// All modules related to generating code from OpenAPI schema files
+pub mod generate {
+    pub use openapi_kit_macros::from_file;
 }
