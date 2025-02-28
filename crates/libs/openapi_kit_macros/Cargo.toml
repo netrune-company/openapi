@@ -1,7 +1,7 @@
 [package]
 name = "openapi_kit_macros"
 description = "OpenAPI Macros"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2024"
 homepage = "https://github.com/netrune/openapi"
 repository = "https://github.com/netrune/openapi"
