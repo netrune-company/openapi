@@ -2,5 +2,9 @@
 name = "openapi_kit_workspace"
 version = "0.0.3"
 edition = "2024"
+homepage = "https://github.com/netrune/openapi"
+repository = "https://github.com/netrune/openapi"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
