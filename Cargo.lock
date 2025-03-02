@@ -252,6 +252,10 @@ dependencies = [
 ]
 
 [[package]]
+name = "openapi_kit_workspace"
+version = "0.0.1"
+
+[[package]]
 name = "openapiv3"
 version = "2.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
