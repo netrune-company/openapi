@@ -9,8 +9,10 @@ pub fn from_file(path: &str) -> TokenStream {
         panic!("Could not load workspace");
     };
 
-    let Ok(content) = read_to_string(path) else {
-        panic!("Failed to read file");
+    let path = workspace.path.join(".openapi").join(path);
+
+    let Ok(content) = read_to_string(&path) else {
+        panic!("Failed to read file at {}", path.display());
     };
 
     generate(content.as_str(), workspace)
