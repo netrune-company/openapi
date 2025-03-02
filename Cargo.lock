@@ -240,6 +240,7 @@ version = "0.0.1"
 dependencies = [
  "handlebars",
  "openapi_kit_schema",
+ "openapi_kit_workspace",
  "syn",
 ]
 
