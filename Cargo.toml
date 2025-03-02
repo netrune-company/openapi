@@ -3,9 +3,9 @@ resolver = "2"
 members = ["crates/apps/*", "crates/libs/*"]
 
 [workspace.dependencies]
-openapi_kit_workspace = { version = "0.0.1", path = "crates/libs/openapi_kit_workspace" }
-openapi_kit_schema = { version = "0.0.1", path = "crates/libs/openapi_kit_schema" }
-openapi_kit_macros = { version = "0.0.1", path = "crates/libs/openapi_kit_macros" }
+openapi_kit_workspace = { version = "0.0.3", path = "crates/libs/openapi_kit_workspace" }
+openapi_kit_schema = { version = "0.0.3", path = "crates/libs/openapi_kit_schema" }
+openapi_kit_macros = { version = "0.0.3", path = "crates/libs/openapi_kit_macros" }
 
 openapiv3 = { version = "2.0.0" }
 handlebars = { version = "6.3.1" }

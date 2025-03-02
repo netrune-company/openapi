@@ -1,6 +1,6 @@
 [package]
 name = "openapi_kit_workspace"
-version = "0.0.1"
+version = "0.0.3"
 edition = "2024"
 
 [dependencies]
