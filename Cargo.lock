@@ -224,7 +224,7 @@ version = "0.1.0"
 
 [[package]]
 name = "openapi_kit"
-version = "0.0.1"
+version = "0.0.3"
 dependencies = [
  "openapi_kit_macros",
  "openapi_kit_schema",
@@ -236,7 +236,7 @@ version = "0.0.1"
 
 [[package]]
 name = "openapi_kit_macros"
-version = "0.0.1"
+version = "0.0.3"
 dependencies = [
  "handlebars",
  "openapi_kit_schema",
@@ -246,7 +246,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_schema"
-version = "0.0.1"
+version = "0.0.3"
 dependencies = [
  "openapiv3",
  "serde_yaml",
@@ -254,7 +254,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_workspace"
-version = "0.0.1"
+version = "0.0.3"
 
 [[package]]
 name = "openapiv3"
