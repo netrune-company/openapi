@@ -1,5 +1,6 @@
 [package]
 name = "openapi_kit_workspace"
+description = "OpenAPI Workspace"
 version = "0.0.3"
 edition = "2024"
 homepage = "https://github.com/netrune/openapi"
