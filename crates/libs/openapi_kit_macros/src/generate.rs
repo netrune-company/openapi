@@ -32,7 +32,7 @@ pub fn from_project(input: TokenStream) -> TokenStream {
     };
 
     // Set fallback for schema path, and load the schema
-    let schema_path = workspace.path.join("openapi.yaml");
+    let schema_path = workspace.path.join(&project.schema_path);
     let Ok(schema) = openapi_kit_schema::load(&schema_path) else {
         panic!("Failed to load schema at {}", schema_path.display());
     };

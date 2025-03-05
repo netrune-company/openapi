@@ -12,7 +12,13 @@ pub struct Config {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Project {
     pub language: String,
+    #[serde(default = "schema_path_default")]
+    pub schema_path: String,
     pub templates: HashMap<String, Template>,
+}
+
+fn schema_path_default() -> String {
+    String::from("openapi.yaml")
 }
 
 #[derive(Serialize, Deserialize, Debug)]
