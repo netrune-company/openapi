@@ -9,3 +9,5 @@ readme = "README.md"
 license = "MIT"
 
 [dependencies]
+serde.workspace = true
+serde_yml.workspace = true

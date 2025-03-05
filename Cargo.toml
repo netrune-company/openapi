@@ -9,3 +9,5 @@ openapi_kit_macros = { version = "0.0.4", path = "crates/libs/openapi_kit_macros
 
 openapiv3 = { version = "2.0.0" }
 handlebars = { version = "6.3.1" }
+serde_yml = { version = "0.0.12" }
+serde = { version = "1.0.218", features = ["derive"] }

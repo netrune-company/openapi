@@ -1,8 +1,9 @@
-use crate::error::Error;
+use crate::{config::Config, error::Error};
 use std::path::{Path, PathBuf};
 
 pub struct Workspace {
     pub path: PathBuf,
+    pub config: Config,
 }
 
 impl Workspace {
@@ -24,9 +25,10 @@ impl Workspace {
 
             Self::load_recursive(parent)
         } else {
-            Ok(Workspace {
-                path: path.to_path_buf(),
-            })
+            let path = path.to_path_buf();
+            let config = Config::load(full_path.join("config.yaml"))?;
+
+            Ok(Workspace { path, config })
         }
     }
 }
