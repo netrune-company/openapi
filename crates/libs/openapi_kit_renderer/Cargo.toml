@@ -1,0 +1,10 @@
+[package]
+name = "openapi_kit_renderer"
+version = "0.0.4"
+edition = "2024"
+
+[dependencies]
+openapi_kit_schema.workspace = true
+openapi_kit_workspace.workspace = true
+serde.workspace = true
+tera = { version = "1.20.0" }

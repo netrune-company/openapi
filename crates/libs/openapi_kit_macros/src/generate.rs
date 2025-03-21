@@ -1,6 +1,6 @@
 use std::fs::read_to_string;
 
-use handlebars::Handlebars;
+use openapi_kit_renderer::Renderer;
 use openapi_kit_workspace::Workspace;
 use proc_macro::TokenStream;
 use syn::{Error, LitStr, parse::Parse, parse_macro_input, spanned::Spanned};
@@ -25,12 +25,6 @@ pub fn from_project(input: TokenStream) -> TokenStream {
         panic!("Could not find template");
     };
 
-    // Retrieve template contents from path.
-    let template_path = workspace.path.join(".openapi").join(&template.path);
-    let Ok(template_content) = read_to_string(&template_path) else {
-        panic!("Failed to read file at {}", template_path.display());
-    };
-
     // Set fallback for schema path, and load the schema
     let schema_path = workspace.path.join(&project.schema_path);
     let Ok(schema) = openapi_kit_schema::load(&schema_path) else {
@@ -38,9 +32,15 @@ pub fn from_project(input: TokenStream) -> TokenStream {
     };
 
     // Render the template
-    let hbs = Handlebars::new();
-    let Ok(output) = hbs.render_template(&template_content, &schema) else {
-        panic!("Failed to render template");
+    let Ok(renderer) = Renderer::new(&workspace, &reference.project) else {
+        panic!("Could not create renderer.");
+    };
+
+    let output = match renderer.render(&template.path, &schema) {
+        Ok(result) => result,
+        Err(error) => {
+            panic!("{:?}", error);
+        }
     };
 
     // Return as a string literal

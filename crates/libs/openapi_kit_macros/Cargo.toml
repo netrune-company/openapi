@@ -11,7 +11,7 @@ license = "MIT"
 [dependencies]
 openapi_kit_schema.workspace = true
 openapi_kit_workspace.workspace = true
-handlebars.workspace = true
+openapi_kit_renderer.workspace = true
 
 syn = { version = "2.0.98" }
 
