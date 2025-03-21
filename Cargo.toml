@@ -6,8 +6,8 @@ members = ["crates/apps/*", "crates/libs/*"]
 openapi_kit_workspace = { version = "0.0.3", path = "crates/libs/openapi_kit_workspace" }
 openapi_kit_schema = { version = "0.0.3", path = "crates/libs/openapi_kit_schema" }
 openapi_kit_macros = { version = "0.0.4", path = "crates/libs/openapi_kit_macros" }
+openapi_kit_renderer = { version = "0.0.4", path = "crates/libs/openapi_kit_renderer" }
 
 openapiv3 = { version = "2.0.0" }
-handlebars = { version = "6.3.1" }
 serde_yml = { version = "0.0.12" }
-serde = { version = "1.0.218", features = ["derive"] }
+serde = { version = "1.0.219", features = ["derive"] }
