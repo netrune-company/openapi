@@ -36,8 +36,6 @@ pub fn from_project(input: TokenStream) -> TokenStream {
         panic!("Could not create renderer.");
     };
 
-    println!("{:?}", schema.components);
-
     let output = match renderer.render(&template.path, &schema) {
         Ok(result) => result,
         Err(error) => {
