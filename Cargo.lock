@@ -377,7 +377,7 @@ version = "0.1.0"
 
 [[package]]
 name = "openapi_kit"
-version = "0.0.4"
+version = "0.0.5"
 dependencies = [
  "openapi_kit_macros",
  "openapi_kit_schema",
