@@ -1,8 +1,9 @@
 mod error;
+mod schema;
 
 use error::Error;
-use openapi_kit_schema::OpenApiSchema;
 use openapi_kit_workspace::Workspace;
+use schema::OpenAPI;
 use tera::{Context, Tera};
 
 pub struct Renderer {
@@ -25,7 +26,7 @@ impl Renderer {
         Ok(Self { engine })
     }
 
-    pub fn render(&self, template: &str, data: &OpenApiSchema) -> Result<String, Error> {
+    pub fn render(&self, template: &str, data: &OpenAPI) -> Result<String, Error> {
         let context = Context::from_serialize(data)?;
         Ok(self.engine.render(template, &context)?)
     }

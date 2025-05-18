@@ -1,6 +1,6 @@
 [workspace]
-resolver = "2"
-members = ["crates/apps/*", "crates/libs/*"]
+resolver = "3"
+members = ["crates/apps/*", "crates/libs/*", "examples/*"]
 
 [workspace.dependencies]
 openapi_kit_workspace = { version = "0.0.3", path = "crates/libs/openapi_kit_workspace" }
