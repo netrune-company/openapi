@@ -17,6 +17,20 @@ pub struct OpenAPIPath {
     delete: Option<OpenAPIOperation>,
 }
 
+impl OpenAPIPath {
+    pub fn iter(&self) -> impl Iterator<Item = (&str, &'_ OpenAPIOperation)> {
+        vec![
+            ("get", &self.get),
+            ("put", &self.put),
+            ("post", &self.post),
+            ("delete", &self.delete),
+            ("patch", &self.patch),
+        ]
+        .into_iter()
+        .filter_map(|(method, maybe_op)| maybe_op.as_ref().map(|op| (method, op)))
+    }
+}
+
 impl IntoIterator for OpenAPIPath {
     type Item = (&'static str, OpenAPIOperation);
 
