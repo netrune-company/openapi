@@ -10,25 +10,16 @@ pub struct OpenAPI {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIPath {
+    #[serde(skip_serializing_if = "Option::is_none")]
     post: Option<OpenAPIOperation>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     get: Option<OpenAPIOperation>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     put: Option<OpenAPIOperation>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     patch: Option<OpenAPIOperation>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<OpenAPIOperation>,
-}
-
-impl OpenAPIPath {
-    pub fn iter(&self) -> impl Iterator<Item = (&str, &'_ OpenAPIOperation)> {
-        vec![
-            ("get", &self.get),
-            ("put", &self.put),
-            ("post", &self.post),
-            ("delete", &self.delete),
-            ("patch", &self.patch),
-        ]
-        .into_iter()
-        .filter_map(|(method, maybe_op)| maybe_op.as_ref().map(|op| (method, op)))
-    }
 }
 
 impl IntoIterator for OpenAPIPath {

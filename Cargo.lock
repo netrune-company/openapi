@@ -378,7 +378,7 @@ version = "0.1.0"
 
 [[package]]
 name = "openapi_kit"
-version = "0.0.8"
+version = "0.0.9"
 dependencies = [
  "openapi_kit_macros",
  "openapi_kit_schema",
@@ -386,7 +386,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_macros"
-version = "0.0.8"
+version = "0.0.9"
 dependencies = [
  "openapi_kit_renderer",
  "openapi_kit_schema",
@@ -396,7 +396,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_renderer"
-version = "0.0.8"
+version = "0.0.9"
 dependencies = [
  "openapi_kit_schema",
  "openapi_kit_workspace",
