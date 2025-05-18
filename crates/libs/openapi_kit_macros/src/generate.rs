@@ -76,10 +76,10 @@ impl Parse for Reference {
         };
 
         // Ensure project and template references are not empty
-        if project == "" {
+        if project.is_empty() {
             return Err(Error::new(input.span(), "Project name can not be empty"));
         }
-        if template == "" {
+        if template.is_empty() {
             return Err(Error::new(input.span(), "Template name can not be empty"));
         }
 

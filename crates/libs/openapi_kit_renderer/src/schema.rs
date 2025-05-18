@@ -11,6 +11,30 @@ pub struct OpenAPI {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIPath {
     post: Option<OpenAPIOperation>,
+    get: Option<OpenAPIOperation>,
+    put: Option<OpenAPIOperation>,
+    patch: Option<OpenAPIOperation>,
+    delete: Option<OpenAPIOperation>,
+}
+
+impl IntoIterator for OpenAPIPath {
+    type Item = (&'static str, OpenAPIOperation);
+
+    type IntoIter = std::vec::IntoIter<Self::Item>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        vec![
+            ("post", self.post),
+            ("get", self.get),
+            ("put", self.put),
+            ("patch", self.patch),
+            ("delete", self.delete),
+        ]
+        .into_iter()
+        .filter_map(|(method, maybe_op)| maybe_op.map(|op| (method, op)))
+        .collect::<Vec<_>>()
+        .into_iter()
+    }
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -29,9 +53,20 @@ pub trait MaybeFrom<T>: Sized {
 
 impl From<openapi_kit_schema::OpenAPI> for OpenAPI {
     fn from(value: openapi_kit_schema::OpenAPI) -> Self {
-        let paths = HashMap::new();
+        let mut paths = HashMap::new();
         let mut models = HashMap::new();
 
+        // Populate paths.
+        value.paths.paths.into_iter().for_each(
+            |(endpoint, ref_or_path_item)| match ref_or_path_item {
+                openapi_kit_schema::ReferenceOr::Reference { reference: _ } => (),
+                openapi_kit_schema::ReferenceOr::Item(path_item) => {
+                    paths.insert(endpoint, OpenAPIPath::from(path_item));
+                }
+            },
+        );
+
+        // Populate models.
         if let Some(components) = value.components {
             components
                 .schemas
@@ -47,6 +82,27 @@ impl From<openapi_kit_schema::OpenAPI> for OpenAPI {
         }
 
         OpenAPI { paths, models }
+    }
+}
+
+impl From<openapi_kit_schema::PathItem> for OpenAPIPath {
+    fn from(value: openapi_kit_schema::PathItem) -> Self {
+        OpenAPIPath {
+            post: value.post.and_then(OpenAPIOperation::maybe_from),
+            get: value.get.and_then(OpenAPIOperation::maybe_from),
+            put: value.put.and_then(OpenAPIOperation::maybe_from),
+            patch: value.patch.and_then(OpenAPIOperation::maybe_from),
+            delete: value.delete.and_then(OpenAPIOperation::maybe_from),
+        }
+    }
+}
+
+impl MaybeFrom<openapi_kit_schema::Operation> for OpenAPIOperation {
+    fn maybe_from(value: openapi_kit_schema::Operation) -> Option<Self> {
+        if let Some(operation_id) = value.operation_id {
+            return Some(OpenAPIOperation { operation_id });
+        }
+        None
     }
 }
 
