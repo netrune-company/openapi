@@ -44,6 +44,7 @@ pub struct OpenAPIOperation {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIModel {
+    description: Option<String>,
     properties: HashMap<String, String>,
 }
 
@@ -111,6 +112,7 @@ impl MaybeFrom<openapi_kit_schema::Schema> for OpenAPIModel {
         match value.schema_kind {
             openapi_kit_schema::SchemaKind::Type(openapi_kit_schema::Type::Object(object_type)) => {
                 let mut model = OpenAPIModel {
+                    description: value.schema_data.description,
                     properties: HashMap::new(),
                 };
 
@@ -132,7 +134,15 @@ impl MaybeFrom<openapi_kit_schema::Schema> for OpenAPIModel {
                                         openapi_kit_schema::Type::String(_) => {
                                             String::from("String")
                                         }
-                                        openapi_kit_schema::Type::Number(_) => String::from("i64"),
+                                        openapi_kit_schema::Type::Number(number_type) => {
+                                            match number_type.format {
+                                                openapi_kit_schema::VariantOrUnknownOrEmpty::Item(_) => {
+                                                    // The format is either double or float here.
+                                                    String::from("f64")
+                                                },
+                                                _ => String::from("i64")
+                                            }
+                                        },
                                         openapi_kit_schema::Type::Integer(_) => String::from("i64"),
                                         openapi_kit_schema::Type::Array(array_type) => {
                                             let mut builder = String::from("Vec<");
