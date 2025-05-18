@@ -413,7 +413,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_workspace"
-version = "0.0.3"
+version = "0.0.5"
 dependencies = [
  "serde",
  "serde_yml",
