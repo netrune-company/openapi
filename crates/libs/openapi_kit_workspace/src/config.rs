@@ -24,6 +24,7 @@ fn schema_path_default() -> String {
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Template {
     pub path: String,
+    pub output: String,
 }
 
 impl Config {

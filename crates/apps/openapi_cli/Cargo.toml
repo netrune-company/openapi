@@ -1,6 +1,15 @@
 [package]
 name = "openapi_cli"
-version = "0.1.0"
+description = "OpenAPI CLI"
+version = "0.0.9"
 edition = "2024"
+homepage = "https://github.com/netrune/openapi"
+repository = "https://github.com/netrune/openapi"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
+openapi_kit_renderer.workspace = true
+openapi_kit_workspace.workspace = true
+openapi_kit_schema.workspace = true
+clap = { version = "4.5.39", features = ["derive"] }
