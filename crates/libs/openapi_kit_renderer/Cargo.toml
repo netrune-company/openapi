@@ -1,7 +1,12 @@
 [package]
 name = "openapi_kit_renderer"
-version = "0.0.4"
+description = "OpenAPI Renderer"
+version = "0.0.9"
 edition = "2024"
+homepage = "https://github.com/netrune/openapi"
+repository = "https://github.com/netrune/openapi"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
 openapi_kit_schema.workspace = true

@@ -4,9 +4,9 @@ use std::path::Path;
 
 pub use error::Error;
 
-pub type OpenApiSchema = openapiv3::OpenAPI;
+pub use openapiv3::*;
 
-pub fn load<P: AsRef<Path>>(path: P) -> Result<OpenApiSchema, Error> {
-    let file = std::fs::read_to_string(path).map_err(|e| Error::Io(e))?;
-    serde_yaml::from_str(&file).map_err(|e| Error::Serde(e))
+pub fn load<P: AsRef<Path>>(path: P) -> Result<OpenAPI, Error> {
+    let file = std::fs::read_to_string(path).map_err(Error::Io)?;
+    serde_yaml::from_str(&file).map_err(Error::Serde)
 }

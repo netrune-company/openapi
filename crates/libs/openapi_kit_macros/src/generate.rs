@@ -1,5 +1,3 @@
-use std::fs::read_to_string;
-
 use openapi_kit_renderer::Renderer;
 use openapi_kit_workspace::Workspace;
 use proc_macro::TokenStream;
@@ -27,19 +25,25 @@ pub fn from_project(input: TokenStream) -> TokenStream {
 
     // Set fallback for schema path, and load the schema
     let schema_path = workspace.path.join(&project.schema_path);
-    let Ok(schema) = openapi_kit_schema::load(&schema_path) else {
-        panic!("Failed to load schema at {}", schema_path.display());
+    let schema = match openapi_kit_schema::load(&schema_path) {
+        Ok(schema) => schema,
+        Err(error) => panic!(
+            "Failed to load schema at {}: {:?}",
+            schema_path.display(),
+            error
+        ),
     };
 
     // Render the template
-    let Ok(renderer) = Renderer::new(&workspace, &reference.project) else {
-        panic!("Could not create renderer.");
+    let renderer = match Renderer::new(&workspace, &reference.project) {
+        Ok(renderer) => renderer,
+        Err(error) => panic!("Could not create renderer: {error:?}"),
     };
 
-    let output = match renderer.render(&template.path, &schema) {
+    let output = match renderer.render(&template.path, &schema.into()) {
         Ok(result) => result,
         Err(error) => {
-            panic!("{:?}", error);
+            panic!("{error:?}");
         }
     };
 
@@ -72,10 +76,10 @@ impl Parse for Reference {
         };
 
         // Ensure project and template references are not empty
-        if project == "" {
+        if project.is_empty() {
             return Err(Error::new(input.span(), "Project name can not be empty"));
         }
-        if template == "" {
+        if template.is_empty() {
             return Err(Error::new(input.span(), "Template name can not be empty"));
         }
 
