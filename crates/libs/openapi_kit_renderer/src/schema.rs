@@ -136,8 +136,18 @@ impl MaybeFrom<openapi_kit_schema::Schema> for OpenAPIModel {
                                     property.schema_kind
                                 {
                                     Some(match property_kind {
-                                        openapi_kit_schema::Type::String(_) => {
-                                            String::from("String")
+                                        openapi_kit_schema::Type::String(s) => {
+                                            match s.format {
+                                                openapi_kit_schema::VariantOrUnknownOrEmpty::Unknown(format) => {
+                                                    if format == "uuid" {
+                                                        String::from("uuid::Uuid")
+                                                    } else {
+                                                        String::from("String")
+                                                    }
+                                                },
+                                                _ => String::from("String")
+                                            }
+                                            
                                         }
                                         openapi_kit_schema::Type::Number(number_type) => {
                                             match number_type.format {

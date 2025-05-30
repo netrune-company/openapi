@@ -516,7 +516,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_renderer"
-version = "0.0.10"
+version = "0.0.11"
 dependencies = [
  "openapi_kit_schema",
  "openapi_kit_workspace",
