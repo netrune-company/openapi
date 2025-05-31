@@ -1,11 +1,10 @@
-use std::collections::HashMap;
-
+use indexmap::IndexMap;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPI {
-    paths: HashMap<String, OpenAPIPath>,
-    models: HashMap<String, OpenAPIModel>,
+    paths: IndexMap<String, OpenAPIPath>,
+    models: IndexMap<String, OpenAPIModel>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -50,7 +49,7 @@ pub struct OpenAPIOperation {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIModel {
     description: Option<String>,
-    properties: HashMap<String, String>,
+    properties: IndexMap<String, String>,
 }
 
 pub trait MaybeFrom<T>: Sized {
@@ -59,8 +58,8 @@ pub trait MaybeFrom<T>: Sized {
 
 impl From<openapi_kit_schema::OpenAPI> for OpenAPI {
     fn from(value: openapi_kit_schema::OpenAPI) -> Self {
-        let mut paths = HashMap::new();
-        let mut models = HashMap::new();
+        let mut paths = IndexMap::new();
+        let mut models = IndexMap::new();
 
         // Populate paths.
         value.paths.paths.into_iter().for_each(
@@ -118,7 +117,7 @@ impl MaybeFrom<openapi_kit_schema::Schema> for OpenAPIModel {
             openapi_kit_schema::SchemaKind::Type(openapi_kit_schema::Type::Object(object_type)) => {
                 let mut model = OpenAPIModel {
                     description: value.schema_data.description,
-                    properties: HashMap::new(),
+                    properties: IndexMap::new(),
                 };
 
                 let required = object_type.required.clone();
