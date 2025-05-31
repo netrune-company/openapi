@@ -488,7 +488,7 @@ checksum = "a4895175b425cb1f87721b59f0f286c2092bd4af812243672510e1ac53e2e0ad"
 
 [[package]]
 name = "openapi_cli"
-version = "0.0.12"
+version = "0.0.13"
 dependencies = [
  "clap",
  "openapi_kit_renderer",
@@ -498,7 +498,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit"
-version = "0.0.12"
+version = "0.0.13"
 dependencies = [
  "openapi_kit_macros",
  "openapi_kit_schema",
@@ -506,7 +506,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_macros"
-version = "0.0.12"
+version = "0.0.13"
 dependencies = [
  "openapi_kit_renderer",
  "openapi_kit_schema",
@@ -516,7 +516,7 @@ dependencies = [
 
 [[package]]
 name = "openapi_kit_renderer"
-version = "0.0.12"
+version = "0.0.13"
 dependencies = [
  "indexmap",
  "openapi_kit_schema",

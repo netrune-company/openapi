@@ -3,7 +3,9 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPI {
+    #[serde(with = "indexmap::map::serde_seq")]
     paths: IndexMap<String, OpenAPIPath>,
+    #[serde(with = "indexmap::map::serde_seq")]
     models: IndexMap<String, OpenAPIModel>,
 }
 
@@ -49,6 +51,7 @@ pub struct OpenAPIOperation {
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIModel {
     description: Option<String>,
+    #[serde(with = "indexmap::map::serde_seq")]
     properties: IndexMap<String, String>,
 }
 
