@@ -11,3 +11,4 @@ license = "MIT"
 [dependencies]
 openapiv3.workspace = true
 serde_yml.workspace = true
+serde_json.workspace = true

@@ -49,6 +49,7 @@ fn main() {
                     error
                 ),
             };
+
             let Ok(renderer) = Renderer::new(&workspace, project_name) else {
                 eprintln!("Failed to create renderer for project '{project_name}'.");
                 exit(1);
@@ -67,24 +68,29 @@ fn main() {
                     exit(1);
                 };
 
-                if std::fs::write(workspace.path.join(&template.output), &output).is_err() {
+                if let Err(error) = std::fs::write(workspace.path.join(&template.output), &output) {
                     eprintln!(
-                        "Failed to write output for template '{template_name}' in project '{project_name}'."
+                        "Failed to write output for template '{template_name}' in project '{project_name}': {error}"
                     );
                     exit(1);
                 }
             } else {
                 for (template_name, template) in &project.templates {
-                    let Ok(output) = renderer.render(&template.path, &schema.clone().into()) else {
-                        eprintln!(
-                            "Failed to render template '{template_name}' in project '{project_name}'."
-                        );
-                        exit(1);
+                    let output = match renderer.render(&template.path, &schema.clone().into()) {
+                        Ok(output) => output,
+                        Err(error) => {
+                            eprintln!(
+                                "Failed to render template '{template_name}' in project '{project_name}': {error:?}."
+                            );
+                            exit(1);
+                        }
                     };
 
-                    if std::fs::write(workspace.path.join(&template.output), &output).is_err() {
+                    if let Err(error) =
+                        std::fs::write(workspace.path.join(&template.output), &output)
+                    {
                         eprintln!(
-                            "Failed to write output for template '{template_name}' in project '{project_name}'."
+                            "Failed to write output for template '{template_name}' in project '{project_name}': {error}."
                         );
                         exit(1);
                     }

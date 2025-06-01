@@ -3,24 +3,22 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPI {
-    #[serde(with = "indexmap::map::serde_seq")]
-    paths: IndexMap<String, OpenAPIPath>,
-    #[serde(with = "indexmap::map::serde_seq")]
-    models: IndexMap<String, OpenAPIModel>,
+    pub paths: IndexMap<String, OpenAPIPath>,
+    pub models: IndexMap<String, OpenAPIModel>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIPath {
     #[serde(skip_serializing_if = "Option::is_none")]
-    post: Option<OpenAPIOperation>,
+    pub post: Option<OpenAPIOperation>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    get: Option<OpenAPIOperation>,
+    pub get: Option<OpenAPIOperation>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    put: Option<OpenAPIOperation>,
+    pub put: Option<OpenAPIOperation>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    patch: Option<OpenAPIOperation>,
+    pub patch: Option<OpenAPIOperation>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    delete: Option<OpenAPIOperation>,
+    pub delete: Option<OpenAPIOperation>,
 }
 
 impl IntoIterator for OpenAPIPath {
@@ -45,14 +43,13 @@ impl IntoIterator for OpenAPIPath {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIOperation {
-    operation_id: String,
+    pub operation_id: String,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct OpenAPIModel {
-    description: Option<String>,
-    #[serde(with = "indexmap::map::serde_seq")]
-    properties: IndexMap<String, String>,
+    pub description: Option<String>,
+    pub properties: IndexMap<String, String>,
 }
 
 pub trait MaybeFrom<T>: Sized {
@@ -126,9 +123,9 @@ impl MaybeFrom<openapi_kit_schema::Schema> for OpenAPIModel {
                 let required = object_type.required.clone();
 
                 object_type
-                    .properties
-                    .into_iter()
-                    .for_each(|(key, ref_or_property)| {
+                .properties
+                .into_iter()
+                .for_each(|(key, ref_or_property)| {
                         let kind = match ref_or_property {
                             openapi_kit_schema::ReferenceOr::Reference { reference } => {
                                 reference.split("/").last().map(Into::into)
@@ -214,14 +211,3 @@ impl MaybeFrom<openapi_kit_schema::Schema> for OpenAPIModel {
         }
     }
 }
-
-/*
-
-{% for (name, model) in models %}
-pub struct {{ name }} {
-    {% for (property, kind) in model.properties  %}
-    pub {{ property }}: {{ kind }},
-    {% endfor %}
-}
-{% endfor %}
-*/

@@ -1,5 +1,5 @@
 mod error;
-mod schema;
+pub mod schema;
 
 use error::Error;
 use openapi_kit_workspace::Workspace;
